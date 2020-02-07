@@ -15,3 +15,8 @@ def load(in_memory_buffer: StringIO = None, filePath: str = "") -> List[Dict[str
         csv_dict = list(reader)
     return csv_dict
 
+
+def find(attendance_dict: Iterable[Dict[str, str]], target_date: str) -> List[str]:
+    target_date_attendance = [str(attendance_data.get('time')) for attendance_data in attendance_dict if attendance_data.get('date') == target_date]
+    return target_date_attendance
+
