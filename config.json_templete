@@ -1,0 +1,7 @@
+{
+    "access_token":"2ef4f5578946860370d8f3d8358f53bf0d0d56807bd3e640ff02b020ea3b68d8",
+    "client_id":"",
+    "redirect_uri":"urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob",
+    "response_type":"token",
+    "token_url":"https://accounts.secure.freee.co.jp/public_api/authorize"
+}
