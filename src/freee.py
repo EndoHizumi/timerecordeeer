@@ -6,14 +6,13 @@ from typing import Dict
 
 
 class freee:
-    access_token = ''
-    headers = {'Authorization': f'Bearer {access_token}', 'accept': 'application/json'}
+    headers = {'Authorization': '', 'accept': 'application/json'}
 
     def __init__(self):
         with open('config.json') as f:
             config = json.load(ｆ)
             if config.get('access_token'):
-                self.access_token = config.get('access_token')
+                self.headers['Authorization'] = f'Bearer {config.get("access_token")}'
             else:
                 print('config.jsonにアクセストークンが登録されていません。認証ページにログインしてアクセストークンを取得してください')
                 token_url = f"{config['token_url']}?client_id={config['client_id']}&redirect_uri={config['redirect_uri']}&response_type={config['response_type']}"
