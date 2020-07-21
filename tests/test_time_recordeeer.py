@@ -1,9 +1,7 @@
 import csv
-import tempfile
-from io import StringIO
 from unittest import TestCase
 
-import time_recordeeer as recorder
+import src.time_recordeeer as recorder
 
 
 class TestLoad(TestCase):
@@ -22,9 +20,9 @@ class TestLoad(TestCase):
         self.assertEqual(actual_data, self.expect_data)
 
     def test_ファイルから勤怠データが読み込みができる(self):
-        with open("temp.csv", "w") as f:
+        with open("./tests/temp.csv", "w") as f:
             f.write("\r".join(self.test_data))
-        actual_data = recorder.load(filePath="temp.csv")
+        actual_data = recorder.load(None, filePath="./tests/temp.csv")
         self.assertEqual(actual_data, self.expect_data)
 
 
