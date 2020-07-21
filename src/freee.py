@@ -17,6 +17,7 @@ class freee:
                 print('config.jsonにアクセストークンが登録されていません。認証ページにログインしてアクセストークンを取得してください')
                 token_url = f"{config['token_url']}?client_id={config['client_id']}&redirect_uri={config['redirect_uri']}&response_type={config['response_type']}"
                 webbrowser.open(token_url)
+                return
 
     def me(self):
         # curl -X GET "https://api.freee.co.jp/hr/api/v1/users/me" -H  "accept: application/json" -H  "Authorization: Bearer 2ef4f5578946860370d8f3d8358f53bf0d0d56807bd3e640ff02b020ea3b68d8"
