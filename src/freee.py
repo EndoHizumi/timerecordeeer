@@ -24,4 +24,7 @@ class freee:
 
     def register_time_clocks(self, company_id: str, emp_id: str, state: str):
         payload: Dict[str, str] = {'company_id': company_id, 'type': state, 'emp_id': emp_id, 'base_date': date.today().strftime('%Y-%m-%d')}
-        return requests.post(f"https://api.freee.co.jp/hr/api/v1/employees/{emp_id}/time_clocks", headers=self.headers, data=payload).json()
+        responce = requests.post(f"https://api.freee.co.jp/hr/api/v1/employees/{emp_id}/time_clocks", headers=self.headers, data=payload)
+        if not responce.status_code == 201:
+            raise ValueError(responce.json())
+        return responce.json()
