@@ -11,7 +11,7 @@ class freee:
 
     def __init__(self):
         script_path = os.path.dirname(os.path.abspath(__file__))
-        with open(f'{script_path}config.json') as f:
+        with open(f'{script_path}/config.json') as f:
             config = json.load(ｆ)
             if config.get('access_token'):
                 self.headers['Authorization'] = f'Bearer {config.get("access_token")}'
