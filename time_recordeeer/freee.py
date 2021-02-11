@@ -19,7 +19,7 @@ class freee:
                 self.headers['Authorization'] = f'Bearer {config.get("access_token")}'
                 emp_info = requests.get("https://api.freee.co.jp/hr/api/v1/users/me", headers=self.headers).json()
                 self.company_id = emp_info['companies'][0]['id']
-                self.employee_id = emp_info['companies'][0]['employee_id']
+                self.emp_id = emp_info['companies'][0]['employee_id']
             else:
                 print('config.jsonにアクセストークンが登録されていません。認証ページにログインしてアクセストークンを取得してください')
                 token_url = f"{config['token_url']}?client_id={config['client_id']}&redirect_uri={config['redirect_uri']}&response_type={config['response_type']}"
@@ -34,4 +34,8 @@ class freee:
         return responce.json()
 
     def get_available_type(self) -> str:
-        pass
+        attendance_state_map = {'break_begin': 'clockIn', 'break_out': 'breakIn', 'clock_in': 'clockOut'}
+        url = f"https://api.freee.co.jp/hr/api/v1/employees/{self.emp_id}/time_clocks/available_types?company_id={self.company_id}"
+        responce = requests.get(url, headers=self.headers).json()
+        print(responce)
+        return attendance_state_map[responce['available_types'][0]]
