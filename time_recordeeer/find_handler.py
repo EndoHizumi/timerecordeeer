@@ -3,8 +3,9 @@ from io import StringIO
 from typing import Dict, Iterable
 
 
-def handle(attendance_data: Iterable[Dict[str, str]], target_date: str) -> Iterable[str]:
-    target_date_attendance = [str(date_attendance.get('time')) for date_attendance in attendance_data if date_attendance.get('date') == target_date]
+def handle(args) -> Iterable[str]:
+    attendance_data = load(None, filePath=args.f)
+    target_date_attendance = [str(date_attendance.get('time')) for date_attendance in attendance_data if date_attendance.get('date') == args.date]
     return target_date_attendance
 
 

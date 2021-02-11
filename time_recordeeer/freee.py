@@ -37,5 +37,4 @@ class freee:
         attendance_state_map = {'break_begin': 'clockIn', 'break_out': 'breakIn', 'clock_in': 'clockOut'}
         url = f"https://api.freee.co.jp/hr/api/v1/employees/{self.emp_id}/time_clocks/available_types?company_id={self.company_id}"
         responce = requests.get(url, headers=self.headers).json()
-        print(responce)
         return attendance_state_map[responce['available_types'][0]]
